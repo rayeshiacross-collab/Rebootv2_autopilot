@@ -5,7 +5,8 @@
 
 import { put } from "@vercel/blob";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
+export const maxDuration = 300;
 
 // OpenRouter model id. Override with OPENROUTER_MODEL (e.g. a ":free" model id from
 // https://openrouter.ai/models). The old default "deepseek/deepseek-chat-v3-0324:free"
