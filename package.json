@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@agent-browser/eve": "^0.39.1",
+    "@vercel/blob": "^0.27.0",
     "@vercel/connect": "0.4.2",
     "ai": "7.0.112",
     "eve": "0.66.0",
