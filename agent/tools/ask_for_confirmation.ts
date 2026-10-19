@@ -1,4 +1,5 @@
 import { defineTool } from "eve/tools";
+import { always } from "eve/tools/approval";
 import { z } from "zod";
 
 export default defineTool({
@@ -12,7 +13,7 @@ export default defineTool({
       .default("medium")
       .describe("How consequential the action is"),
   }),
-  approval: true,
+  approval: always(),
   async execute({ action, reason, risk }) {
     return {
       confirmed: true,
