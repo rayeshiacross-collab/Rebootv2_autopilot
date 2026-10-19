@@ -2,7 +2,7 @@
 
 Eve agent specialized for running and growing YouTube channels.
 
-It can research topics, write scripts, generate titles & descriptions, design thumbnail concepts, plan Shorts, review analytics, and build content calendars. Browser tools are limited to YouTube/Google domains. Sensitive actions always require your confirmation.
+It can research topics, write scripts, generate titles & descriptions, design thumbnail concepts, plan Shorts, review analytics, and build content calendars. Sensitive actions always require your confirmation.
 
 ## Quick start
 
@@ -82,7 +82,6 @@ Design a 8-episode series on "[theme]". Give series name, episode titles, and th
 ## Safety
 
 - The agent will **not** upload, publish, delete, or change channel settings without calling the confirmation tool first.
-- Browser access is restricted to YouTube and Google domains.
 
 ## Project structure (relevant parts)
 
@@ -90,7 +89,6 @@ Design a 8-episode series on "[theme]". Give series name, episode titles, and th
 agent/
 ├── agent.ts
 ├── instructions.md          # YouTube-focused system prompt
-├── extensions/browser.ts    # Browser tools (YouTube allowlist)
 ├── sandbox.ts               # Pre-installs Chromium + agent-browser
 ├── tools/ask_for_confirmation.ts
 └── skills/
@@ -100,6 +98,29 @@ agent/
     ├── youtube-shorts.md
     ├── youtube-analytics.md
     └── youtube-series.md
+```
+
+## Browser tools (temporarily disabled)
+
+`@agent-browser/eve` 0.39.1 (latest release) was built against eve 0.57 and uses a tool
+contract (v44) that eve 0.66 has dropped, so mounting it fails `eve build` with
+`Selected module binding "extensions/browser.ts" has no compile or runtime usage`.
+The mount was removed until a compatible release ships. The sandbox still pre-installs
+agent-browser + Chromium. To restore, recreate `agent/extensions/browser.ts`:
+
+```ts
+import browser from "@agent-browser/eve";
+
+export default browser({
+  allowedDomains: [
+    "youtube.com", "*.youtube.com", "youtu.be", "studio.youtube.com",
+    "*.studio.youtube.com", "google.com", "*.google.com",
+    "accounts.google.com", "www.googleapis.com",
+  ],
+  maxOutputChars: 60_000,
+  contentBoundaries: true,
+  inlineScreenshots: true,
+});
 ```
 
 ## Deploy
