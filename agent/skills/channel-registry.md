@@ -24,6 +24,19 @@ Lessons 18–41. Practical operator voice. Skill: `ai-automation-course`.
 
 Offline simulator preferred; live providers only on request.
 
+## Specialist team (subagents)
+
+Delegate when the task is pure writing or pure video craft:
+
+| Subagent | Use for |
+|----------|--------|
+| `writer-psychology` | First Domino, System Glitch, essay scripts |
+| `writer-course` | Python + AI Automation teaching scripts |
+| `videomaker-packaging` | Titles, descriptions, tags, thumbnails, pinned comments, end screens |
+| `videomaker-production` | Scene plans, overlays, captions/QA, recording checklists |
+
+Typical flow: writer → production → packaging.
+
 ## Optional / adjacent
 
 - Solar / 50 Wonders / Insomnia packs — treat as a separate packaging request unless the user assigns a channel name.
