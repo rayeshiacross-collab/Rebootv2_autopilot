@@ -7,7 +7,12 @@ import { put } from "@vercel/blob";
 
 export const runtime = "edge";
 
-const FREE_MODEL = "deepseek/deepseek-chat-v3-0324:free";
+// OpenRouter model id. Override with OPENROUTER_MODEL (e.g. a ":free" model id from
+// https://openrouter.ai/models). The old default "deepseek/deepseek-chat-v3-0324:free"
+// was removed from OpenRouter.
+const DEFAULT_OPENROUTER_MODEL = "deepseek/deepseek-chat";
+// Direct DeepSeek API model id. Override with DEEPSEEK_MODEL.
+const DEFAULT_DEEPSEEK_MODEL = "deepseek-chat";
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const DEEPSEEK_URL = "https://api.deepseek.com/chat/completions";
 
@@ -18,7 +23,9 @@ async function callLLM(prompt: string, system: string): Promise<string> {
   if (!key) throw new Error("No API key configured");
 
   const url = openRouterKey ? OPENROUTER_URL : DEEPSEEK_URL;
-  const model = openRouterKey ? FREE_MODEL : "deepseek-chat";
+  const model = openRouterKey
+    ? process.env.OPENROUTER_MODEL || DEFAULT_OPENROUTER_MODEL
+    : process.env.DEEPSEEK_MODEL || DEFAULT_DEEPSEEK_MODEL;
 
   const res = await fetch(url, {
     method: "POST",
@@ -85,8 +92,17 @@ async function saveToBlob(packageData: any): Promise<string | null> {
 }
 
 export async function POST(req: Request): Promise<Response> {
+  let body: any;
   try {
-    const body = await req.json() as any;
+    body = await req.json();
+  } catch {
+    return Response.json({ error: "Request body must be valid JSON" }, { status: 400 });
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return Response.json({ error: "Request body must be a JSON object" }, { status: 400 });
+  }
+
+  try {
     const channel = body.channel || "psychology";
     const topic = body.topic || "";
     const lane = body.lane;

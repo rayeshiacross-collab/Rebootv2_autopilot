@@ -43,7 +43,7 @@ npx wrangler deploy
 ```
 
 ### Vercel (already in Rebootv2_autopilot)
-1. Set `OPENROUTER_API_KEY` and `BLOB_READ_WRITE_TOKEN` in Vercel project settings.
+1. Set `OPENROUTER_API_KEY` (or `DEEPSEEK_API_KEY`) and `BLOB_READ_WRITE_TOKEN` in Vercel project settings. Optional: `OPENROUTER_MODEL` (default `deepseek/deepseek-chat`) or `DEEPSEEK_MODEL` (default `deepseek-chat`).
 2. Redeploy.
 3. Endpoint: `POST /api/generate`
 
