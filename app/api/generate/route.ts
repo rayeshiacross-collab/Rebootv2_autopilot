@@ -86,7 +86,7 @@ async function saveToBlob(packageData: any): Promise<string | null> {
   const channel = packageData.channel || "unknown";
   const pathname = `packages/${channel}/${timestamp}-${runId}.json`;
   const blob = await put(pathname, JSON.stringify(packageData, null, 2), {
-    access: "public",
+    access: "private",
     contentType: "application/json",
   });
   return blob.url;
