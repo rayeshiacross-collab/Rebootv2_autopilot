@@ -2,47 +2,45 @@
 
 Always identify the active lane before writing.
 
-## Lane 1 — Rebootv2 Psychology
+## Channel 1 — Rebootv2 Psychology
 
-| Sub-lane | Format | Skill |
-|----------|--------|-------|
-| The First Domino | 40–50s narrative short | `first-domino` |
-| System Glitch | 25–35s cognitive short | `system-glitch` |
-| Long Essay | 7–11 min Sunday deep dive | `youtube-content` + essay rules in instructions |
+| Sub-lane | Format | Skill / writer |
+|----------|--------|----------------|
+| The First Domino | 40–50s narrative short | `first-domino` / `writer-psychology` |
+| System Glitch | 25–35s cognitive short | `system-glitch` / `writer-psychology` |
+| Long Essay | 7–11+ min Sunday deep dive | `writer-psychology` + handoff package |
 
-Voice: clinical, observational, diagnostic. Protect no-cheap-drama rule.
+Voice: Hope — clinical, observational, diagnostic. No cheap drama words.
 
-## Lane 2 — Python Course (Digi-OS)
+## Channel 2 — Digi-OS Course
 
-Lessons 01–17. Teaching voice. Skill: `python-course`.
+| Track | Lessons | Writer |
+|-------|---------|--------|
+| Python | 01–17 | `writer-course` |
+| AI Automation | 18–41 | `writer-course` |
 
-Supports sequential playlists and lab links from the course companion.
+Teaching / operator voice. Sequential playlists + lab links.
 
-## Lane 3 — AI Automation Course (Digi-OS)
+## Channel 3 — High Thoughts
 
-Lessons 18–41. Practical operator voice. Skill: `ai-automation-course`.
+Retro cartoon podcast. Hosts: **Steak** & **Potatoes**. 12–15 min.  
+Skill: `high-thoughts`. Writer: `writer-high-thoughts`.  
+Title form: `High Thoughts — [Question]`. Both characters on every thumbnail.
 
-Offline simulator preferred; live providers only on request.
-
-## Specialist team (subagents)
-
-Delegate when the task is pure writing or pure video craft:
+## Specialist team
 
 | Subagent | Use for |
 |----------|--------|
-| `writer-psychology` | First Domino, System Glitch, essay scripts |
+| `writer-psychology` | Rebootv2 scripts, LF + 3 Shorts + essay packages |
 | `writer-course` | Python + AI Automation teaching scripts |
-| `videomaker-packaging` | Titles, descriptions, tags, thumbnails, pinned comments, end screens |
+| `writer-high-thoughts` | Steak/Potatoes dialogue episodes |
+| `videomaker-packaging` | Titles, descriptions, tags, thumbs, pinned comments |
 | `videomaker-production` | Scene plans, overlays, captions/QA, recording checklists |
 
-Typical flow: writer → production → packaging.
-
-## Optional / adjacent
-
-- Solar / 50 Wonders / Insomnia packs — treat as a separate packaging request unless the user assigns a channel name.
-- LearnWorlds is a temporary 30-day traffic test, not the permanent course home. YouTube remains the durable home.
+Typical flow: writer → production → packaging → assembled handoff.
 
 ## Routing rule
 
-If the user does not name a lane, ask once:
-“Which lane? (1) Rebootv2 Psychology  (2) Python Course  (3) AI Automation Course”
+If the user does not name a channel, ask once:
+
+“Which channel? (1) Rebootv2 Psychology  (2) Digi-OS Course  (3) High Thoughts”
