@@ -1,35 +1,111 @@
-# grok
+# grok — YouTube Channel Agent
 
-This is an [eve](https://eve.dev) agent bootstrapped with [`eve init`](https://eve.dev/docs/reference/cli#eve-init).
+Eve agent specialized for running and growing YouTube channels.
 
-## Getting started
+It can research topics, write scripts, generate titles & descriptions, design thumbnail concepts, plan Shorts, review analytics, and build content calendars. Browser tools are limited to YouTube/Google domains. Sensitive actions always require your confirmation.
 
-First, run the development server:
+## Quick start
 
 ```bash
-eve dev
+pnpm install
+eve dev          # local TUI
+# or open the web chat after deploy
+eve deploy
 ```
 
-The development TUI opens an interactive session where you can send messages to your agent.
+## What it can do
 
-Start by editing `agent/instructions.md` to define the agent's identity, purpose, tone, and response guidelines. Configure its model and runtime behavior in `agent/agent.ts`.
+| Skill | Use it for |
+|-------|------------|
+| Content | Full scripts, titles, descriptions, tags, chapters |
+| Research | Competitor analysis, topic & search research |
+| Thumbnails | Concepts + A/B test plans |
+| Shorts | Vertical short-form scripts & hooks |
+| Analytics | CTR / retention diagnosis & next actions |
+| Series | Content pillars & multi-week calendars |
 
-Add capabilities under `agent/`, including tools, connections, channels, skills, subagents, and schedules. eve reloads your changes as you work.
+## Prompt library (copy-paste)
 
-## Learn more
+### Research & ideas
+```
+Research the top videos for "[topic]" on YouTube. Summarize what is working and give me 5 fresh video ideas with working titles.
+```
 
-To learn more about eve, explore these resources:
+```
+Analyze these competitor channels: [list]. What content gaps can I own?
+```
 
-- [eve documentation](https://eve.dev/docs) — learn about eve's features and authoring APIs.
-- [Build an Agent tutorial](https://eve.dev/docs/tutorial/first-agent) — build and deploy an agent step by step.
-- [eve on GitHub](https://github.com/vercel/eve) — view the source and contribute.
+### Long-form video
+```
+Write a complete 10–12 minute script on "[topic]". Include a strong hook, clear sections, visual notes, and a CTA. Then give me 8 title options, a full description with chapters, and tags.
+```
 
-## Deploy on Vercel
+```
+Turn this outline into a spoken script + packaging (titles, description, tags, thumbnail concepts):
+[paste outline]
+```
 
-Deploy your agent to [Vercel](https://vercel.com) from the project root:
+### Thumbnails
+```
+Give me 5 thumbnail concepts for this video: "[title/topic]". Include exact text overlay, visual idea, and which 2 I should A/B test first.
+```
+
+### Shorts
+```
+Create 3 YouTube Shorts scripts (20–40 seconds each) about "[topic]". Include spoken words, on-screen text, and a hook in the first 2 seconds.
+```
+
+```
+Pull 3 Shorts ideas from this long-form video script:
+[paste script]
+```
+
+### Analytics
+```
+Here are my numbers for the last video:
+- Impressions: 
+- CTR: 
+- Average view duration / retention: 
+- Top traffic sources: 
+What is the biggest problem and what should I change next?
+```
+
+### Planning
+```
+Build a 4-week content calendar for my channel about "[niche]". Mix long-form and Shorts. Include working titles and the content pillar each video belongs to.
+```
+
+```
+Design a 8-episode series on "[theme]". Give series name, episode titles, and the format for each episode.
+```
+
+## Safety
+
+- The agent will **not** upload, publish, delete, or change channel settings without calling the confirmation tool first.
+- Browser access is restricted to YouTube and Google domains.
+
+## Project structure (relevant parts)
+
+```
+agent/
+├── agent.ts
+├── instructions.md          # YouTube-focused system prompt
+├── extensions/browser.ts    # Browser tools (YouTube allowlist)
+├── sandbox.ts               # Pre-installs Chromium + agent-browser
+├── tools/ask_for_confirmation.ts
+└── skills/
+    ├── youtube-content.md
+    ├── youtube-research.md
+    ├── youtube-thumbnails.md
+    ├── youtube-shorts.md
+    ├── youtube-analytics.md
+    └── youtube-series.md
+```
+
+## Deploy
 
 ```bash
 eve deploy
 ```
 
-`eve deploy` links a Vercel project if needed and deploys the agent to production. See the [eve deployment documentation](https://eve.dev/docs/guides/deployment/vercel) for authentication, environment variables, and deployment options.
+See the [eve deployment docs](https://eve.dev/docs/guides/deployment/vercel) for environment variables and authentication.
